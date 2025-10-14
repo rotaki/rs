@@ -1,0 +1,14 @@
+[package]
+name = "rs"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "rs"
+path = "src/lib.rs"
+
+[[bin]]
+name = "rs"
+path = "src/main.rs"
+
+[dependencies]
