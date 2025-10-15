@@ -12,3 +12,4 @@ name = "rs"
 path = "src/main.rs"
 
 [dependencies]
+libc = "0.2"

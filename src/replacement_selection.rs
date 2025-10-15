@@ -1,9 +1,10 @@
-use crate::io::{open_run_writer, read_gensort_record, write_len_key_len_payload};
+use crate::io::{
+    open_direct_reader, open_run_writer, read_gensort_record, write_len_key_len_payload,
+};
 use crate::record::Item;
 use std::cmp::Reverse;
 use std::collections::BinaryHeap;
-use std::fs::File;
-use std::io::{self, BufReader, Read, Write};
+use std::io::{self, Read};
 
 pub struct ReplacementSelection {
     heap_cap: usize,
@@ -95,8 +96,7 @@ impl ReplacementSelection {
 
     /// Run replacement selection from a file path
     pub fn run_from_file(&self, input_path: &str) -> io::Result<usize> {
-        let f = File::open(input_path)?;
-        let rdr = BufReader::new(f);
+        let rdr = open_direct_reader(input_path)?;
         self.run(rdr)
     }
 }
